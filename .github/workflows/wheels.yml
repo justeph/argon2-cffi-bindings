@@ -3,6 +3,8 @@ name: Wheels
 
 on:
   push:
+    branches:
+      - "*"
     tags:
       - "*"
   pull_request:
