@@ -54,6 +54,13 @@ jobs:
           fetch-tags: true
           persist-credentials: false
 
+      # don't use pypa/cibuildwheel action here, because setup python is failling for riscv64
+      - name: Install python3 and pip
+        run: sudo apt install -y python3 pipx
+      - name: Add pipx binaries to PATH
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install cibuildwheel
+        run: pipx install cibuildwheel
       # See pyproject.toml for config.
       - name: Build riscv wheels
         run: cibuildwheel --output-dir wheelhouse
